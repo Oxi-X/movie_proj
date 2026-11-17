@@ -34,6 +34,9 @@ class MovieAdmin(admin.ModelAdmin):
     ordering = ('-rating','name')# Сортировка по полям. '-' означает сортировку по убыванию
     list_per_page = 5# Количество объектов на странице в админке
     actions = ('set_rubles','set_euros','set_dollars')# Добавление действий в админку для изменения валюты у выбранных объектов
+    #fields=['name','rating','year']# Поля, которые будут отображаться в форме редактирования объекта в админке
+    #exclude = ['raiting_status']# Поля, которые будут исключены из формы редактирования объекта в админке
+    readonly_fields = ['budget']# Поля, которые будут доступны только для чтения в форме редактирования объекта в админке
     
 
     @admin.display(ordering='rating',description='Status Movie')
