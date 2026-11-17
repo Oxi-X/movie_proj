@@ -1,0 +1,11 @@
+{%extends 'movie_app/base.html'%}
+
+{%block title%}Информация о фильме - {{movie.name}}{%endblock%}
+
+{%block content%}
+    <h1><i>Информация о фильме</i></h1>
+    <h3>{{movie}}</h3>
+    <h3>Бюджет: {{movie.budget}}$</h3>
+    <h3>Год выпуска: {{movie.year}}</h3>
+    <h3><a href="/">Назад</a></h3>
+{%endblock%}
