@@ -6,8 +6,8 @@ from movie_app.models import Movie
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('name','rating','year','currency','budget','slug', 'raiting_status')# Поля, которые будут отображаться в списке объектов в админке
-    list_filter = ('year',)# Фильтр по полям. В админке появится фильтр по году
-    search_fields = ('name','year','budget','currency')#Поиск по полям.Строка поиска в админке
+    list_filter = ('year','currency',)# Фильтр по полям. В админке появится фильтр по году
+    search_fields = ('name',)#Поиск по полям.Строка поиска в админке
     prepopulated_fields = {'slug':('name',)}# Автоматическое заполнение поля slug на основе поля name
     list_editable = ('rating','year','currency','budget')# Разрешает редактирование полей в списке объектов
     ordering = ('-rating','name')# Сортировка по полям. '-' означает сортировку по убыванию
