@@ -9,7 +9,9 @@ def show_all_movies(request):
     
     movies = Movie.objects.annotate(
         new_field_true= Value(True),
-        new_field_false= Value(False))
+        new_field_false= Value(False),
+        new_field_budget= F('budget'),
+        new_field_raiting_year= F('rating') + F('year'))
     
     agg = movies.aggregate(Avg('budget'),
                            Avg('rating'),

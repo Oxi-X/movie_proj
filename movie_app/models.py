@@ -8,12 +8,12 @@ from django.utils.text import slugify
 class Movie(models.Model):
     name = models.CharField(max_length=40)
     rating = models.IntegerField()
-    year = models.IntegerField(null=True)
+    year = models.IntegerField(null=True, blank=True)
     budget = models.IntegerField(default=100000)
     slug = models.SlugField(default='', null=False)
 
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.name,allow_unicode=True,db_index=True)
+        self.slug = slugify(self.name,allow_unicode=True)
         super(Movie,self).save(*args,**kwargs)
 
     def get_url(self):
