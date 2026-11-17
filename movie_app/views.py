@@ -6,10 +6,17 @@ from .models import Movie
 
 def show_all_movies(request):
     # movies = Movie.objects.order_by(F('year').desc(nulls_last=True))
+    
     movies = Movie.objects.annotate(
         new_field_true= Value(True),
         new_field_false= Value(False))
-    agg = movies.aggregate(Avg('budget'),Avg('rating'),Min('year'),Max('year'),Count('id'))
+    
+    agg = movies.aggregate(Avg('budget'),
+                           Avg('rating'),
+                           Min('year'),
+                           Max('year'),
+                           Count('id'))
+    
     context={
         'movies':movies,
         'agg':agg,
