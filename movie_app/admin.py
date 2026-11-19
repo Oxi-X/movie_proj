@@ -1,11 +1,15 @@
 from django.contrib import admin, messages
 from django.db.models import QuerySet
-from movie_app.models import Movie,Director
+from movie_app.models import Movie,Director,Actor
 
 # Register your models here.
 @admin.register(Director)
 class DirectorAdmin(admin.ModelAdmin):
     list_display = ('first_name','last_name','email')
+
+@admin.register(Actor)
+class ActorAdmin(admin.ModelAdmin):
+    list_display = ('first_name','last_name','gender')
 
 class RatingFilter(admin.SimpleListFilter):
     title = 'Фильтр по рейтингу'
@@ -41,6 +45,7 @@ class MovieAdmin(admin.ModelAdmin):
     #fields=['name','rating','year']# Поля, которые будут отображаться в форме редактирования объекта в админке
     #exclude = ['raiting_status']# Поля, которые будут исключены из формы редактирования объекта в админке
     readonly_fields = ['budget']# Поля, которые будут доступны только для чтения в форме редактирования объекта в админке
+    filter_horizontal = ('actors',)# Отображение поля actors в виде горизонтального фильтра в форме редактирования объекта в админке
     
 
     @admin.display(ordering='rating',description='Status Movie')

@@ -14,7 +14,23 @@ class Director(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
-
+class Actor(models.Model):
+    MALE='M'
+    FEMALE='F'
+    GENDER_CHOICES = [
+        (MALE,'Мужчина'),
+        (FEMALE,'Женщина'),
+    ]
+    
+    first_name= models.CharField(max_length=100,null=False)
+    last_name= models.CharField(max_length=100,null=False)   
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
+    
+    def __str__(self):
+        if self.gender == 'M':
+            return f'Актер: {self.first_name} {self.last_name}'
+        else:
+            return f'Актриса: {self.first_name} {self.last_name}'
 
 class Movie(models.Model):
     EURO='eur'
@@ -37,6 +53,7 @@ class Movie(models.Model):
         null=True,
         blank=True,
     )
+    actors = models.ManyToManyField(Actor, blank=True)
 
     def get_url(self):
         return reverse('movie-detail', args=[self.slug])
