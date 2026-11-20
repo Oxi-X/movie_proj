@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import Movie
 from django.http import HttpResponse
 from django.db.models import F,Sum,Max,Min,Count,Avg, Value
-from .models import Movie
+from .models import Movie,Director
 
 def show_all_movies(request):
     # movies = Movie.objects.order_by(F('year').desc(nulls_last=True))
@@ -34,5 +34,9 @@ def show_one_movie(request,slug_movie:str):
     return render(request, 'movie_app/one_movie.html', context=context)
 
 def show_director(request):
-    directors = ['Jhon Doe', 'Jane Smith', 'Bob Johnson','Alice Brown']#Movie.objects.values('director__first_name','director__last_name','director__email').distinct()
+    directors = Director.objects.all()
     return render(request, 'movie_app/directors.html', context={'directors': directors})
+
+def show_one_director(request, director_id):
+    director = get_object_or_404(Director, id=director_id)
+    return render(request, 'movie_app/director.html',context={'director': director})

@@ -6,7 +6,7 @@
 <h1><i>Режиссеры</i></h1>
 <ul>
         {%for i in directors%}
-            <li>{{i}}</li>
+            <li><a href="{% url 'one-director' director_id=i.id %}">{{i.first_name}} {{i.last_name}} - {{i.email}}</a></li>
         {%endfor%}
 </ul>
 
