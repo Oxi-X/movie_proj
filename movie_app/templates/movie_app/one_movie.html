@@ -8,4 +8,22 @@
     <h3>Бюджет: {{movie.budget}}$</h3>
     <h3>Год выпуска: {{movie.year}}</h3>
     <h3><a href="/">Назад</a></h3>
+    <hr>
+    <h3>
+        Информация об режиссере
+        <ul>
+            <li>Имя {{movie.director.first_name}}</li>
+            <li>Фамилия {{movie.director.last_name}}</li>
+            <li>Почта {{movie.director.email}}</li>
+        </ul>
+    </h3>
+    <hr>
+    <h3>
+        Сведения об актерах
+        <ul>
+            {%for i in movie.actors.all %}
+            <li>{{i}}</li>
+            {%endfor%}
+        </ul>
+    </h3>
 {%endblock%}

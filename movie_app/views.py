@@ -32,3 +32,7 @@ def show_one_movie(request,slug_movie:str):
         'movie':movie
     }
     return render(request, 'movie_app/one_movie.html', context=context)
+
+def show_director(request):
+    directors = ['Jhon Doe', 'Jane Smith', 'Bob Johnson','Alice Brown']#Movie.objects.values('director__first_name','director__last_name','director__email').distinct()
+    return render(request, 'movie_app/directors.html', context={'directors': directors})
